@@ -11,7 +11,7 @@ import { SignPage } from './pages/sign-page';
 import { Header } from './components/header';
 
 /** Utilities */
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 /** Styles */
 import './App.css';
@@ -24,10 +24,36 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user });
+    /** Get the user from Google Auth and pass it to firestore.
+     * If user doesn't exist, create new user in DB
+     * Then set state with new user
+     */
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        /** if user from Google auth isn't null, get the reference for him
+         * from the firestore DB (if he doesn't exist there, this function will
+         * create new user in DB)
+         */
+        const userRef = await createUserProfileDocument(userAuth);
 
-      console.log(user);
+        /** Get data for the user from firestore DB and uodate state */
+        userRef.onSnapshot(snapShot => {
+          this.setState(
+            {
+              currentUser: {
+                id: snapShot.id,
+                ...snapShot.data()
+              }
+            },
+            () => {
+              console.log(this.state);
+            }
+          );
+        });
+      } else {
+        /** Set state for null user */
+        this.setState({ currentUser: userAuth });
+      }
     });
   }
 
