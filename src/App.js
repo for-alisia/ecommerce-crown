@@ -46,6 +46,7 @@ class App extends React.Component {
               }
             },
             () => {
+              // TODO: remove later
               console.log(this.state);
             }
           );
