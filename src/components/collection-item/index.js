@@ -1,1 +1,1 @@
-export * from './collection-item.component';
+export { default as CollectionItem } from './collection-item.component';
