@@ -8,6 +8,13 @@ export const selectShopCollections = createSelector(
   (shop) => shop.collections
 );
 
+/** Create an array from a collections object */
+export const selectShopCollectionForPreview = createSelector(
+  [selectShopCollections],
+  (collections) => Object.keys(collections).map((key) => collections[key])
+);
+
+/** Find collection by key */
 export const selectShopCollection = memoize((collectionParam) =>
   createSelector(
     [selectShopCollections],
