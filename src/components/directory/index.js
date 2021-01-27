@@ -1,1 +1,1 @@
-export * from './directory.component';
+export { default as Directory } from './directory.component';
