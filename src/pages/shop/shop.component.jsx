@@ -7,13 +7,13 @@ import { CollectionsOverview } from '../../components/collections-overview';
 import { CollectionPage } from '../collection';
 
 /** Styles */
-import './shop.styles.scss';
+import { ShopPageContainer } from './shop.styles';
 
 const Shop = ({ match }) => (
-  <div className='shop-page'>
+  <ShopPageContainer>
     <Route exact path={`${match.path}`} component={CollectionsOverview} />
     <Route path={`${match.path}/:collectionId`} component={CollectionPage} />
-  </div>
+  </ShopPageContainer>
 );
 
 export default Shop;

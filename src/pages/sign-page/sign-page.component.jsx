@@ -6,11 +6,11 @@ import { SignIn } from '../../components/sign-in';
 import { SignUp } from '../../components/sign-up';
 
 /** Styles */
-import './sign-page.styles.scss';
+import { SignUpPageContainer } from './sign-page.styles';
 
 export const SignPage = () => (
-  <div className='sign-page'>
+  <SignUpPageContainer>
     <SignIn />
     <SignUp />
-  </div>
+  </SignUpPageContainer>
 );

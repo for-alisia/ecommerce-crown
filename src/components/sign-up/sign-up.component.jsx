@@ -9,17 +9,17 @@ import { CustomButton } from '../custom-button';
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 
 /** Styles */
-import './sign-up.styles.scss';
+import { SignUpContainer, TitleContainer } from './sign-up.styles';
 
 export class SignUp extends Component {
   state = {
     displayName: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
   };
 
-  handleSubmit = async e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password, confirmPassword, displayName } = this.state;
 
@@ -29,7 +29,10 @@ export class SignUp extends Component {
     }
 
     try {
-      const { user } = await auth.createUserWithEmailAndPassword(email, password);
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
 
       await createUserProfileDocument(user, { displayName });
 
@@ -37,14 +40,14 @@ export class SignUp extends Component {
         displayName: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
       });
     } catch (error) {
       console.log(error);
     }
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
@@ -52,13 +55,34 @@ export class SignUp extends Component {
   render() {
     const { email, password, confirmPassword, displayName } = this.state;
     return (
-      <div className='sign-up'>
-        <h2 className='title'>I do not have an account</h2>
+      <SignUpContainer>
+        <TitleContainer>I do not have an account</TitleContainer>
         <span>Sign up with your email and password</span>
-        <form className='sign-up-form' onSubmit={this.handleSubmit}>
-          <FormInput type='text' label='Name' name='displayName' value={displayName} onChange={this.handleChange} required />
-          <FormInput type='email' label='Email' name='email' value={email} onChange={this.handleChange} required />
-          <FormInput type='password' label='Password' name='password' value={password} onChange={this.handleChange} required />
+        <form onSubmit={this.handleSubmit}>
+          <FormInput
+            type='text'
+            label='Name'
+            name='displayName'
+            value={displayName}
+            onChange={this.handleChange}
+            required
+          />
+          <FormInput
+            type='email'
+            label='Email'
+            name='email'
+            value={email}
+            onChange={this.handleChange}
+            required
+          />
+          <FormInput
+            type='password'
+            label='Password'
+            name='password'
+            value={password}
+            onChange={this.handleChange}
+            required
+          />
           <FormInput
             type='password'
             label='Confirm password'
@@ -67,9 +91,11 @@ export class SignUp extends Component {
             onChange={this.handleChange}
             required
           />
-          <CustomButton type='submit'>SIGN UP</CustomButton>
+          <CustomButton className='sign-up-button' type='submit'>
+            SIGN UP
+          </CustomButton>
         </form>
-      </div>
+      </SignUpContainer>
     );
   }
 }

@@ -19,7 +19,6 @@ import {
   HeaderContainer,
   OptionsContainer,
   LogoContainer,
-  OptionDiv,
   OptionLink,
 } from './header.styles';
 
