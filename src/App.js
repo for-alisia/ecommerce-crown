@@ -19,6 +19,7 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 /** Redux elements */
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
+import { selectShopCollectionForPreview } from './redux/shop/shop.selectors';
 
 /** Styles */
 import './App.css';
@@ -50,6 +51,12 @@ class App extends React.Component {
       } else {
         /** Set state for null user */
         setCurrentUser(userAuth);
+        /** Code to add initialize items coleection in Firebase
+         * (need to be executed once) */
+        // addCollectionAndDocuments(
+        //   'collections',
+        //   collectionsArray.map(({ title, items }) => ({ title, items }))
+        // );
       }
     });
   }

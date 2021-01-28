@@ -8,7 +8,7 @@ const config = {
   projectId: 'crown-be1fc',
   storageBucket: 'crown-be1fc.appspot.com',
   messagingSenderId: '1075600125483',
-  appId: '1:1075600125483:web:1ea961ba86c659da12046e'
+  appId: '1:1075600125483:web:1ea961ba86c659da12046e',
 };
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
@@ -31,7 +31,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         displayName,
         email,
         createdAt,
-        ...additionalData
+        ...additionalData,
       });
     } catch (error) {
       console.log('error creating user', error.message);
@@ -42,6 +42,21 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 };
 
 firebase.initializeApp(config);
+
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionRef = firestore.collection(collectionKey);
+
+  const batch = firestore.batch();
+  objectsToAdd.forEach((obj) => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj);
+  });
+
+  return await batch.commit();
+};
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
