@@ -41,6 +41,7 @@ class App extends React.Component {
         const userRef = await createUserProfileDocument(userAuth);
 
         /** Get data for the user from firestore DB and uodate state */
+        // @ts-ignore
         userRef.onSnapshot((snapShot) => {
           setCurrentUser({
             id: snapShot.id,

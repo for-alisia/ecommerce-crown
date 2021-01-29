@@ -32,12 +32,30 @@ class Shop extends Component {
   componentDidMount() {
     const { updateCollections } = this.props;
     const collectionRef = firestore.collection('collections');
+
+    /** Get data from firebase, using subscription */
     collectionRef.onSnapshot(async (snapshot) => {
       const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-      console.log(collectionsMap);
       updateCollections(collectionsMap);
       this.setState({ loading: false });
     });
+
+    /** Alternative way using Promises */
+
+    // collectionRef.get().then(snapshot => {
+    //   const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+    //   console.log(collectionsMap);
+    //   updateCollections(collectionsMap);
+    //   this.setState({ loading: false });
+    // })
+
+    /** Alternative way using URL (too nested objects we get this way) */
+
+    // fetch(
+    //   'https://firestore.googleapis.com/v1/projects/crown-be1fc/databases/(default)/documents/collections'
+    // )
+    //   .then((response) => response.json())
+    //   .then((collections) => console.log(collections));
   }
 
   render() {
