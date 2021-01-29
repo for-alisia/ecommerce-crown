@@ -19,7 +19,6 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 /** Redux elements */
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
-import { selectShopCollectionForPreview } from './redux/shop/shop.selectors';
 
 /** Styles */
 import './App.css';

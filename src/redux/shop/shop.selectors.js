@@ -11,13 +11,13 @@ export const selectShopCollections = createSelector(
 /** Create an array from a collections object */
 export const selectShopCollectionForPreview = createSelector(
   [selectShopCollections],
-  (collections) => Object.keys(collections).map((key) => collections[key])
+  (collections) =>
+    collections ? Object.keys(collections).map((key) => collections[key]) : []
 );
 
 /** Find collection by key */
 export const selectShopCollection = memoize((collectionParam) =>
-  createSelector(
-    [selectShopCollections],
-    (collections) => collections[collectionParam]
+  createSelector([selectShopCollections], (collections) =>
+    collections ? collections[collectionParam] : null
   )
 );
