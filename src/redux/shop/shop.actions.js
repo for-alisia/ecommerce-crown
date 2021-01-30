@@ -21,6 +21,7 @@ export const fetchCollectionsFailure = (errorMsg) => ({
   payload: errorMsg,
 });
 
+/** If we work with Thunk middleware this code will fetch all collections from firestore */
 /** Async action (Thunk will throw dispatch if we return a function from the action) */
 export const fetchCollectionsStartAsync = () => {
   return (dispatch) => {

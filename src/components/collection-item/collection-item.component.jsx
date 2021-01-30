@@ -19,7 +19,11 @@ const CollectionItem = ({ item, addItem }) => {
   const { name, price, imageUrl } = item;
   return (
     <CollectionItemContainer>
-      <BackgroundImage className='image' imageUrl={imageUrl}></BackgroundImage>
+      <BackgroundImage
+        className='image'
+        // @ts-ignore
+        imageUrl={imageUrl}
+      ></BackgroundImage>
 
       <CollectionFooterComponent>
         <NameContainer>{name}</NameContainer>

@@ -8,15 +8,15 @@ import { CollectionsOverviewContainer } from '../../components/collections-overv
 import { CollectionContainer } from '../collection';
 
 /** Redux elements */
-import { fetchCollectionsStartAsync } from '../../redux/shop/shop.actions';
+import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 
 /** Styles */
 import { ShopPageContainer } from './shop.styles';
 
 class Shop extends Component {
   componentDidMount() {
-    const { fetchCollectionsStartAsync } = this.props;
-    fetchCollectionsStartAsync();
+    const { fetchCollectionsStart } = this.props;
+    fetchCollectionsStart();
   }
 
   render() {
@@ -38,4 +38,4 @@ class Shop extends Component {
   }
 }
 
-export default connect(null, { fetchCollectionsStartAsync })(Shop);
+export default connect(null, { fetchCollectionsStart })(Shop);
