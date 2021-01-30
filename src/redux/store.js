@@ -8,7 +8,7 @@ import createSagaMiddleware from 'redux-saga';
 import rootReducer from './root-reducer';
 
 /** Sagas */
-import { fetchCollectionStart } from './shop/shop.saga';
+import rootSaga from './root-saga';
 
 /** If we want to use thunk */
 //const middlewares = [thunk];
@@ -24,6 +24,6 @@ if (process.env.NODE_ENV === 'development') {
 
 export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
-sagaMiddleware.run(fetchCollectionStart);
+sagaMiddleware.run(rootSaga);
 
 export const persistor = persistStore(store);
