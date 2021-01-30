@@ -78,6 +78,7 @@ export function* signUp({ payload: { displayName, email, password } }) {
   }
 }
 
+/** Listeners of dispatched actions */
 export function* onGoogleSignInStart() {
   yield takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
 }
