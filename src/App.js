@@ -14,7 +14,7 @@ import { CheckoutContainer } from './pages/checkout';
 import { Header } from './components/header';
 
 /** Redux elements */
-
+import { checkUserSession } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
 
 /** Styles */
@@ -24,41 +24,11 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    /** Get the user from Google Auth and pass it to firestore.
-     * If user doesn't exist, create new user in DB
-     * Then set state with new user
-     */
-    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-    //   if (userAuth) {
-    /** if user from Google auth isn't null, get the reference for him
-     * from the firestore DB (if he doesn't exist there, this function will
-     * create new user in DB)
-     */
-    // const userRef = await createUserProfileDocument(userAuth);
-    /** Get data for the user from firestore DB and uodate state */
-    // @ts-ignore
-    //   userRef.onSnapshot((snapShot) => {
-    //     setCurrentUser({
-    //       id: snapShot.id,
-    //       ...snapShot.data(),
-    //     });
-    //   });
-    // } else {
-    /** Set state for null user */
-    //setCurrentUser(userAuth);
-    /** Code to add initialize items coleection in Firebase
-     * (need to be executed once) */
-    // addCollectionAndDocuments(
-    //   'collections',
-    //   collectionsArray.map(({ title, items }) => ({ title, items }))
-    // );
-    // }
-    // });
+    const { checkUserSession } = this.props;
+    checkUserSession();
   }
 
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
+  componentWillUnmount() {}
 
   render() {
     return (
@@ -85,4 +55,4 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, { checkUserSession })(App);
