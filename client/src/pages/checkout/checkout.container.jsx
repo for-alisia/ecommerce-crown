@@ -14,7 +14,7 @@ import CheckoutPage from './checkout.component';
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
-  totel: selectCartTotal,
+  total: selectCartTotal,
 });
 
 const CheckoutContainer = compose(connect(mapStateToProps))(CheckoutPage);
