@@ -23,6 +23,20 @@ export const CollectionItemContainer = styled.div`
       display: flex;
     }
   }
+
+  @media screen and (max-width: 800px) {
+    width: 45vw;
+
+    &:hover {
+      .image {
+        opacity: unset;
+      }
+
+      .custom-button {
+        opacity: unset;
+      }
+    }
+  }
 `;
 
 export const CollectionFooterComponent = styled.div`
@@ -54,7 +68,7 @@ export const PriceContainer = styled.span`
 
 export const CustomButtonContainer = styled(CustomButton)`
   width: 80%;
-  opacity: 0;
+  opacity: 1;
   position: absolute;
   top: 255px;
   transition: all 0.5s ease;
