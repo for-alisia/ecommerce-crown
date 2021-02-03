@@ -1,5 +1,5 @@
 /** Libraries */
-import React from 'react';
+import React, { Profiler } from 'react';
 
 /** Components */
 import { CustomButton } from '../custom-button';
@@ -15,13 +15,20 @@ import {
 const CartDropdown = ({ cartItems, history, toggleCartHidden }) => (
   <CartDropdownWrapper>
     <CartItemsContainer>
-      {cartItems.length ? (
-        cartItems.map((cartItem) => (
-          <CartItem key={cartItem.id} item={cartItem} />
-        ))
-      ) : (
-        <EmptyMsgContainer>Your cart is empty</EmptyMsgContainer>
-      )}
+      <Profiler
+        id='cart-dropdown-items-profiler'
+        onRender={(id, phase, actualDuration) => {
+          console.log({ id, phase, actualDuration });
+        }}
+      >
+        {cartItems.length ? (
+          cartItems.map((cartItem) => (
+            <CartItem key={cartItem.id} item={cartItem} />
+          ))
+        ) : (
+          <EmptyMsgContainer>Your cart is empty</EmptyMsgContainer>
+        )}
+      </Profiler>
     </CartItemsContainer>
     <CustomButton
       onClick={() => {
