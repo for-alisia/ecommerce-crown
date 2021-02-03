@@ -8,9 +8,11 @@ import { SignUp } from '../../components/sign-up';
 /** Styles */
 import { SignUpPageContainer } from './sign-page.styles';
 
-export const SignPage = () => (
+const SignPage = () => (
   <SignUpPageContainer>
     <SignIn />
     <SignUp />
   </SignUpPageContainer>
 );
+
+export default SignPage;

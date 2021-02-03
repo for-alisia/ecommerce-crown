@@ -68,8 +68,12 @@ export const PriceContainer = styled.span`
 
 export const CustomButtonContainer = styled(CustomButton)`
   width: 80%;
-  opacity: 1;
+  opacity: 0;
   position: absolute;
   top: 255px;
   transition: all 0.5s ease;
+
+  @media screen and (max-width: 800px) {
+    opacity: 1;
+  }
 `;
