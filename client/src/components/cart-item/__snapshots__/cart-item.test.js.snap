@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`expect to render a cart-item component 1`] = `
+<styled.div>
+  <styled.img
+    alt="Skirt"
+    src="http://someurl.com"
+  />
+  <styled.div>
+    <styled.span>
+      Skirt
+    </styled.span>
+    <styled.span>
+      2
+       x $
+      25
+    </styled.span>
+  </styled.div>
+</styled.div>
+`;

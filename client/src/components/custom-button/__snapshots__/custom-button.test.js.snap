@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Custom button component expects to match a snapshot 1`] = `
+<CustomButton>
+  <styled.button>
+    <button
+      className="kvfyMz"
+    />
+  </styled.button>
+</CustomButton>
+`;

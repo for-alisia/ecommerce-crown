@@ -1,7 +1,8 @@
 // @ts-nocheck
 /** Libraries */
-import { shallow, mount, render } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
+import toJson from 'enzyme-to-json';
 
 /** Components */
 import CartItem from './cart-item.component';
@@ -13,6 +14,7 @@ const item = {
   quantity: 2,
 };
 
-it('expect to render a component', () => {
-  expect(shallow(<CartItem item={item} />).length).toEqual(1);
+it('expect to render a cart-item component', () => {
+  const wrapper = shallow(<CartItem item={item} />);
+  expect(toJson(wrapper)).toMatchSnapshot();
 });

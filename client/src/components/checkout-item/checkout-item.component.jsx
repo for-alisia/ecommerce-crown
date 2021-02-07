@@ -20,7 +20,12 @@ import {
   RemoveCellContainer,
 } from './checkout-item.styles';
 
-const CheckoutItem = ({ item, clearItemFromCart, addItem, removeItem }) => {
+export const CheckoutItem = ({
+  item,
+  clearItemFromCart,
+  addItem,
+  removeItem,
+}) => {
   const { name, price, quantity, imageUrl } = item;
   return (
     <CheckoutItemContainer>
